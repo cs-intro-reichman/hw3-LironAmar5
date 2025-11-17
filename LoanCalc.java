@@ -12,10 +12,10 @@ public class LoanCalc {
 		double loan = Double.parseDouble(args[0]);
 		double rate = Double.parseDouble(args[1]);
 		int n = Integer.parseInt(args[2]);
-		double pay = 10000;
+		
         System.out.println("Loan = " + loan + ", interest rate = " + rate + "%, periods = " + n);
 		
-        System.out.println(endBalance(loan, rate, n, pay));
+        
 		
 		
 		// Computes the periodical payment using brute force search
