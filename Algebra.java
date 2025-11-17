@@ -25,43 +25,207 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int sum = x1;
+        if (x2 == 0){
+			 return sum;}
+		else if( x2 > 0 ){
+        while(x2 > 0){
+			sum ++;
+			x2--;
+		}
+		return sum;
+		}
+		else{
+			while (x2 < 0){
+				sum --;
+				x2 ++;
+			}
+			return sum;
+		}
+		
+		
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int sum = x1;
+		if ( x2 == 0 ){ return sum; }
+		else if ( x2 > 0 ){
+          while ( x2 > 0){
+			sum--;
+			x2--;
+		  }
+		  return sum;
+		}
+		else {
+			while (x2 < 0){
+			sum ++;
+			x2++;
+		}
+	    return sum;
+	    }
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+	    int result = x1;
+
+		if ((x2 == 0) || ( result == 0)){ return 0;}
+		else if ( (x2 > 0) && ( x1 > 0) ){
+			for (int i = 1; (i < x2) && (x2 != 1) ; i++) {
+				result = plus( result, x1 );
+			}
+			return result;
+		}
+		else if ((x2 > 0) && (x1 < 0)){
+			for (int i = 1; (i < x2) && (x2 != 1); i++) {
+				result = plus( result, x1);
+			}
+			return result;
+		}
+		else if ((x2 < 0) && ( x1 < 0)) {
+			result = minus( 0, x1 );
+            for (int i = (-1); (i > x2) && (x2 != (-1)); i--) {
+				result = plus( result, minus(0, x1));
+			}
+			return result;
+
+		}
+		else {
+         result = x2;
+		 for (int i = 1; (i < x1) && (x1 != 1); i++) {
+				result = plus( result, x2);
+			}
+         return result;
+		}
+
+		
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+		int power = x;
+		if (x == 0){
+			return 0;
+		}
+		else if ( n == 0){
+			return 1;
+		}
+		else{
+			for (int i = 1; i < n; i++) {
+				power = times( power, x);
+			}
+			return power;
+		}
+		
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int divider = x1;
+		int count = 0;
+		if( x2 == 0) {
+			return 0;
+		}
+		else if ( (x1 == 0)){
+			return 0;
+		}
+		else if (minus(x1,x2) == 0) {
+			return 1;
+		}
+		else if (plus(x1,x2) == 0) {
+			return -1;
+		}
+		else if ((x1 > 0) && (x2 > 0)){
+			
+				while (divider > 0){
+                count ++;
+				divider = minus(divider, x2);
+				}
+				return --count;
+			
+		}
+		else if ((x1 < 0) && (x2 < 0)){
+			if ((minus(x1,x2) == 0)){ return 0;}
+			else{
+				divider = minus(0,x1);
+				while(divider > 0){
+					count++;
+					divider = plus(divider, x2);
+				}
+				return --count;
+			}
+		}
+		else if( (x1 < 0) && (x2 > 0)){
+			divider = minus (0, x1);
+			if (plus(x1,x2) == 0){ return 0;}
+			else{
+				while (divider > 0){
+					count ++;
+					divider = minus(divider,x2);
+				}
+				count--;
+				return minus(0, count);
+			}
+		}
+		else{
+			
+			while (divider > 0){
+				count ++;
+				divider = plus(divider,x2);
+			}
+			count --;
+			return minus(0, count);
+		}
+		
+
+		
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int modulo = x1;
+		if (x2 == 0){return 0;}
+		else if ((x2 > 0) && (x1 > 0)){
+			if( x2 > x1){ return modulo;}
+			else{
+				while(modulo >= x2){
+					modulo = minus(modulo,x2);
+				}
+				return modulo;
+			}
+		}
+		else if(( x2 < 0 ) && ( x1 < 0 )){
+            if(x2 < x1){ return modulo;}
+			while(modulo <= x2){
+				modulo = minus(modulo, x2);
+            }
+			return modulo;
+		}
+        else if ((x1 > 0) && ( x2 < 0)) {
+			x2 = minus(0,x2);
+			while (modulo >= x2){
+				modulo = minus(modulo,x2);
+			}
+			return modulo;
+		}
+		else {
+			modulo = minus(0,x1);
+			while(modulo >= x2 ){
+				modulo = minus(modulo,x2);
+			}
+			return minus(0,modulo);
+		}
+		
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
-	}	  	  
+     int temp = 1;
+	 while (times(temp,temp) < x){
+		temp++;
+	 }
+	
+	return temp;
+    }
 }
