@@ -147,7 +147,7 @@ public class Algebra {
 			
 		}
 		else if ((x1 < 0) && (x2 < 0)){
-			if ((minus(x1,x2) == 0)){ return 0;}
+			if (x2 < x1){ return 0;}
 			else{
 				divider = minus(0,x1);
 				while(divider > 0){
@@ -160,7 +160,7 @@ public class Algebra {
 		}
 		else if( (x1 < 0) && (x2 > 0)){
 			divider = minus (0, x1);
-			if (plus(x1,x2) == 0){ return 0;}
+			if (x2 > divider){ return 0;}
 			else{
 				while (divider > 0){
 					count ++;
@@ -171,13 +171,15 @@ public class Algebra {
 			}
 		}
 		else{
-			
+			if (minus(0,x2) > x1){return 0;}
+			else{
 			while (divider > 0){
 				count ++;
 				divider = plus(divider,x2);
 			}
 			count --;
 			return minus(0, count);
+		}
 		}
 		
 
