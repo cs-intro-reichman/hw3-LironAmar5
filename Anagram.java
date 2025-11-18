@@ -28,22 +28,45 @@ public class Anagram {
 
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
-		// Replace the following statement with your code
-		return false;
+		str1 = preProcess(str1);
+		str2 = preProcess(str2);
+
+		if( str1.length() != str2.length()){ return false;}
+		else{
+			for (int i = 0; i < str1.length(); i++) {
+				str2 = str2.replaceFirst("" +str1.charAt(i), "");
+			}
+
+			if(str2.isEmpty()){ return true;}
+			else{ return false;}
+		}
+		
 	}
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
-		// Replace the following statement with your code
-		return "";
+		String s = str.replaceAll("[^A-Za-z]", "");
+		
+		
+		return s.toLowerCase();
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
-		// Replace the following statement with your code
-		return "";
+		char[] arr = str.toCharArray();
+        char c;
+		for (int i = str.length() - 1 ; i > 0; i--){
+			int j = (int)(Math.random() * (i));
+			c = arr[i];
+			arr[i] = arr[j];
+            arr[j] = c;
+		}
+
+		str = new String(arr);
+
+		return str;
 	}
 }
