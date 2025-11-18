@@ -142,7 +142,8 @@ public class Algebra {
                 count ++;
 				divider = minus(divider, x2);
 				}
-				return --count;
+				count--;
+				return count;
 			
 		}
 		else if ((x1 < 0) && (x2 < 0)){
@@ -153,7 +154,8 @@ public class Algebra {
 					count++;
 					divider = plus(divider, x2);
 				}
-				return --count;
+				count--;
+				return count;
 			}
 		}
 		else if( (x1 < 0) && (x2 > 0)){
@@ -204,28 +206,38 @@ public class Algebra {
 		}
         else if ((x1 > 0) && ( x2 < 0)) {
 			x2 = minus(0,x2);
+			if(x2 > x1){return modulo;}
+			else{
 			while (modulo >= x2){
 				modulo = minus(modulo,x2);
 			}
 			return modulo;
 		}
+		}
 		else {
 			modulo = minus(0,x1);
+			if(x2 >= modulo){return minus(0, modulo);}
+			else{
 			while(modulo >= x2 ){
 				modulo = minus(modulo,x2);
 			}
 			return minus(0,modulo);
+		}
 		}
 		
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
+		if(x == 0 ){return 0;}
+		else if (x < 0) { return -1;}
+		else{
      int temp = 1;
 	 while (times(temp,temp) < x){
 		temp++;
 	 }
 	
 	return temp;
+    }
     }
 }
