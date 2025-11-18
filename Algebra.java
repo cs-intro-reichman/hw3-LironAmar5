@@ -1,3 +1,6 @@
+
+import com.sun.jdi.AbsentInformationException;
+
 // Implements algebraic operations and the square root function without using 
 // the Java operations a + b, a - b, a * b, a / b, a % b, and without calling 
 // Math.sqrt. All the functions in this class operate on int values and
@@ -122,68 +125,21 @@ public class Algebra {
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-		int divider = x1;
-		int count = 0;
-		if( x2 == 0) {
-			return 0;
+		if (x2 == 0){
+			throw new ArithmeticException("divison by zero");
 		}
-		else if ( (x1 == 0)){
-			return 0;
-		}
-		else if (minus(x1,x2) == 0) {
-			return 1;
-		}
-		else if (plus(x1,x2) == 0) {
-			return -1;
-		}
-		else if ((x1 > 0) && (x2 > 0)){
-			
-				while (divider > 0){
-                count ++;
-				divider = minus(divider, x2);
-				}
-				count--;
-				return count;
-			
-		}
-		else if ((x1 < 0) && (x2 < 0)){
-			if (x2 < x1){ return 0;}
-			else{
-				divider = minus(0,x1);
-				while(divider > 0){
-					count++;
-					divider = plus(divider, x2);
-				}
-				count--;
-				return count;
-			}
-		}
-		else if( (x1 < 0) && (x2 > 0)){
-			divider = minus (0, x1);
-			if (x2 > divider){ return 0;}
-			else{
-				while (divider > 0){
-					count ++;
-					divider = minus(divider,x2);
-				}
-				count--;
-				return minus(0, count);
-			}
-		}
-		else{
-			if (minus(0,x2) > x1){return 0;}
-			else{
-			while (divider > 0){
-				count ++;
-				divider = plus(divider,x2);
-			}
-			count --;
-			return minus(0, count);
-		}
-		}
-		
+		boolean sign = (x1 < 0) ^ (x2 < 0);
+		x1 = Math.abs(x1);
+		x2 = Math.abs(x2);
 
-		
+		int count = 0;
+
+		while (x1 >= x2){
+			x1 = x1 - x2;
+			count++;
+		}
+
+		return sign ? -count : count;
 	}
 
 	// Returns x1 % x2
